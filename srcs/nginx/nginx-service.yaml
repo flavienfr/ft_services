@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+#  annotations:
+spec:
+  type: NodePort
+  ports:
+  - port: 32080
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 32443
+    targetPort: 443
+    protocol: TCP
+    name: https
+  - port: 32022
+    nodePort: 32022
+    targetPort: 2222
+    protocol: TCP
+    name: ssh
+  selector:
+    app: nginx
+  externalName: nginx_extern
+# externalTrafficPolicy: Cluster
