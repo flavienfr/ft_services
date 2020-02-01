@@ -18,7 +18,7 @@ spec:
     name: https
   - port: 32022
     nodePort: 32022
-    targetPort: 2222
+    targetPort: 22
     protocol: TCP
     name: ssh
   selector:

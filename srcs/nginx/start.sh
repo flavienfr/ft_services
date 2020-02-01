@@ -1,6 +1,6 @@
 #!/bin/sh
 
-nginx &
+#nginx &
 /usr/sbin/sshd -D &
 
 exec "$@"

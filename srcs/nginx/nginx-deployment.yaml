@@ -16,8 +16,8 @@ spec:
       containers:
       - name: nginx
         image: froussel42/nginx_service:latest
-        ports:
-        - containerPort: 80
+        #imagePullPolicy: Always
+      restartPolicy: Always
 
 # docker build -t nginx_service .
 # image: nginx_service%

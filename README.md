@@ -1,3 +1,7 @@
+telegraph: https://aperogeek.f/monitoring-docker-avec-telegraf-influxdb-et-grafana/
+
+ftps: https://github.com/tarzan79/alpine-ftp/blob/master/Dockerfile
+
 CONTAINERS
 - Nginx			:80 :443
 - FTPS			:21
