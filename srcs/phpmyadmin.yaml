@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: froussel42/phpmyadmin_service:latest
+        env:
+        - name: PMA_HOST
+          value: mysql
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 80
+      nodePort: 5000
+  selector:
+    app: phpmyadmin
+  type: NodePort

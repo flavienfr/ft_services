@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: froussel42/nginx_service:latest
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  type: NodePort
+  ports:
+  - port: 32080
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 32443
+    targetPort: 443
+    protocol: TCP
+    name: https
+  - port: 32022
+    nodePort: 32022
+    targetPort: 22
+    protocol: TCP
+    name: ssh
+  selector:
+    app: nginx
+  externalName: nginx_extern
+# externalTrafficPolicy: Cluster
+# docker build -t nginx_service .
+# image: nginx_service%

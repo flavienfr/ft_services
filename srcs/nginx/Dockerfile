@@ -30,9 +30,9 @@ EXPOSE 80 443 22
 COPY start.sh /usr/local/bin/
 RUN chmod 700 /usr/local/bin/start.sh 
 
-CMD ["/usr/local/bin/start.sh"]
-#ENTRYPOINT ["/usr/local/bin/start.sh"]
-#CMD ["nginx", "-g", "daemon off;"]
+#CMD ["/usr/local/bin/start.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]
+CMD ["nginx", "-g", "daemon off;"]
 
 #&& rm  -rf /tmp/* /var/cache/apk/*
 
