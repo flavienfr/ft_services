@@ -12,8 +12,9 @@ RUN apk add openssl \
 # ssh-keygen / ssh sshuser@IP -p PORT -i id_rsa
 RUN apk add --no-cache openssh-server
 COPY key/id_rsa /etc/ssh/ssh_host_rsa_key
+RUN chmod 700 /etc/ssh/ssh_host_rsa_key
 RUN addgroup sshgroup && adduser -Ds /bin/sh -g sshgroup sshuser
-RUN echo 'sshuser:' | chpasswd
+RUN echo 'sshuser:test' | chpasswd
 ARG home=/home/sshuser/
 RUN mkdir $home/.ssh
 COPY key/id_rsa.pub $home/.ssh/authorized_keys

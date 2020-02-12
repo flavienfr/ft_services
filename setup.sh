@@ -27,6 +27,8 @@ sed -i '' "s/##MINIKUBE_IP##/$MINIKUBE_IP/g" srcs/ftps/vsftpd.conf
 cp -f srcs/telegraf/telegraf_NO_IP.conf srcs/telegraf/telegraf.conf
 sed -i '' "s/##MINIKUBE_IP##/$MINIKUBE_IP/g" srcs/telegraf/telegraf.conf
 
+chmod 600 srcs/nginx/key/id_rsa
+
 # Docker build
 #docker build -t froussel42/grafana_service srcs/grafana
 docker build -t froussel42/ftps_service srcs/ftps
@@ -34,7 +36,7 @@ docker build -t froussel42/ftps_service srcs/ftps
 #docker build -t froussel42/nginx_service srcs/nginx
 #docker build -t froussel42/phpmyadmin_service srcs/phpmyadmin
 #docker build -t froussel42/wordpress_service srcs/wordpress
-
+docker login docker.io
 #docker push froussel42/grafana_service
 docker push froussel42/ftps_service
 #docker push froussel42/mysql_service
